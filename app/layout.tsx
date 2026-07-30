@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import { SiteHeader } from "./_components/site-header";
-import { ThemeSync } from "./_components/theme-sync";
+import { SiteHeader } from "@/components/generic/site-header";
+import { ThemeSync } from "@/components/generic/theme-sync";
 import "./globals.css";
 
 const roboto = Roboto({
