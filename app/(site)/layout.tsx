@@ -1,0 +1,24 @@
+import Navbar from "@/components/generic/essentials/Navbar";
+import Footer from "@/components/generic/essentials/Footer";
+
+export default function SiteLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[999] focus:bg-white focus:px-4 focus:py-2 focus:rounded-md"
+      >
+        Skip to main content
+      </a>
+      <Navbar />
+      <main id="main-content" className="overflow-x-clip">
+        {children}
+      </main>
+      <Footer />
+    </>
+  );
+}

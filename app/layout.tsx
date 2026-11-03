@@ -1,42 +1,94 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { shareImage, site } from "@/lib/site";
 import { Roboto } from "next/font/google";
-import { SiteHeader } from "@/components/generic/site-header";
-import { ThemeSync } from "@/components/generic/theme-sync";
 import "./globals.css";
+import ThemeProvider from "@/components/generic/ThemeProvider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
-  subsets: ["latin"],
   weight: ["300", "400", "500", "700", "900"],
+  subsets: ["latin"],
 });
 
+
+// Site-wide defaults. Pages set their own title (completed by the template
+// below) and description; Open Graph and Twitter fields are inherited unless
+// a page defines its own. The sharing image comes from app/opengraph-image.jpg.
 export const metadata: Metadata = {
-  title: "Social Work Consultancy Ltd",
-  description:
-    "Social Work Consultancy Ltd provides expert social work consultancy, training, and support services.",
+  metadataBase: new URL(site.url),
+  title: {
+    default: site.name,
+    template: `%s | ${site.name}`,
+  },
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.organisation, url: site.url }],
+  creator: site.organisation,
+  publisher: site.organisation,
+  category: "education",
+  keywords: [
+    "social work Nigeria",
+    "social work training",
+    "CPD for social workers",
+    "social work e-learning",
+    "research and evaluation",
+    "policy and advocacy",
+    "safeguarding training Nigeria",
+    "Social Work Consultancy Ltd",
+  ],
+  formatDetection: { email: false, address: false, telephone: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    locale: site.locale,
+    url: "/",
+    title: site.name,
+    description: site.description,
+    images: [shareImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.name,
+    description: site.description,
+    images: [shareImage],
+  },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
-const THEME_INIT_SCRIPT = `(function(){try{var s=localStorage.getItem("theme");var t=s==="light"||s==="dark"?s:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1410" },
+  ],
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      data-theme="light"
-      suppressHydrationWarning
-      className={`${roboto.variable} h-full antialiased`}
-    >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
-      </head>
-      <body className="min-h-full flex flex-col">
-        <ThemeSync />
-        <SiteHeader />
-        {children}
+    <html lang="en" className={`${roboto.variable} scroll-smooth`} suppressHydrationWarning data-scroll-behavior="smooth">
+      <body className={`${roboto.className} antialiased`}>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
