@@ -6,7 +6,7 @@ export const site = {
   name: "Social Work Nigeria",
   organisation: "Social Work Consultancy Ltd",
   shortName: "SWCL",
-  url: "https://socialworkconsultancy.com",
+  url: "https://socialwork-consultancy.com",
   locale: "en_NG",
   language: "en",
   description:
