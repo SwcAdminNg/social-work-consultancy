@@ -2,13 +2,8 @@
 // taken from the client's developer handover (25 October 2026).
 // Placement notes and link instructions are implemented, not published.
 
-import { learningUrl } from "@/lib/site";
-
 const IMG = "/images/e-learning";
 const SWCL = "/images/home/swcl";
-
-export const platformName = "Socialworknigeria.org";
-export const platformHref = learningUrl("/courses");
 
 export const opening = {
   eyebrow: "Our services",
@@ -149,8 +144,7 @@ export const expect = {
       "Visit our learning platform to explore current opportunities, review course information, and identify learning relevant to your responsibilities and goals.",
       "If you are unsure where to begin or are seeking support for a team, contact SWCL to discuss your priorities.",
     ],
-    primary: { label: "Explore Our Learning Platform", href: platformHref },
-    secondary: { label: "Discuss Organisational Training", href: "/contact" },
+    primary: { label: "Discuss Organisational Training", href: "/contact" },
     clarification:
       "Short courses and continuing professional development support learning and practice development. They do not replace a qualifying social work programme or confer professional registration unless explicitly stated and supported.",
   },

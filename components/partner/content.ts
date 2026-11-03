@@ -2,8 +2,6 @@
 // handover (25 October 2026). Placement notes and link instructions from
 // the handover are implemented, not published.
 
-import { learningUrl } from "@/lib/site";
-
 const IMG = "/images/partner-with-us";
 
 export const banner = {
@@ -31,8 +29,6 @@ export type Route = {
 export const ways = {
   eyebrow: "Four routes",
   title: "Ways to Partner With Us",
-  platformName: "socialworknigeria.org",
-  platformHref: learningUrl("/courses"),
   items: [
     {
       id: "sponsor",

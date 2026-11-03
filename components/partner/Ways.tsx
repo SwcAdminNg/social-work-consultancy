@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   BookOpenCheck,
   Briefcase,
@@ -10,28 +9,6 @@ import { Reveal } from "@/components/home/motion";
 import { ways } from "./content";
 
 const icons = [GraduationCap, Briefcase, BookOpenCheck, Microscope];
-
-// Links the learning platform's name wherever the copy mentions it.
-function Copy({ text }: { text: string }) {
-  const parts = text.split(ways.platformName);
-  return (
-    <>
-      {parts.map((part, i) => (
-        <span key={i}>
-          {part}
-          {i < parts.length - 1 && (
-            <Link
-              href={ways.platformHref}
-              className="text-[#2D6A4F] dark:text-[#74c69d] underline underline-offset-4 decoration-[#2D6A4F]/30 hover:decoration-current rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D6A4F]"
-            >
-              {ways.platformName}
-            </Link>
-          )}
-        </span>
-      ))}
-    </>
-  );
-}
 
 /**
  * "Ways to Partner With Us". The four routes as numbered rows: the
@@ -91,7 +68,7 @@ export default function Ways() {
                       key={p}
                       className="t-body text-gray-600 dark:text-[#A3B3A9] max-w-[64ch]"
                     >
-                      <Copy text={p} />
+                      {p}
                     </p>
                   ))}
                 </Reveal>

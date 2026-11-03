@@ -6,9 +6,7 @@ export const site = {
   name: "Social Work Nigeria",
   organisation: "Social Work Consultancy Ltd",
   shortName: "SWCL",
-  url: (
-    process.env.NEXT_PUBLIC_BASE_URL || "https://socialworknigeria.org"
-  ).replace(/\/$/, ""),
+  url: "https://socialworkconsultancy.com",
   locale: "en_NG",
   language: "en",
   description:
@@ -37,12 +35,3 @@ export const shareImage = {
   height: 630,
   alt: `${site.name}: ${site.tagline}`,
 };
-
-// Courses, resources and sign-in live on the separate learning platform
-// (socialworknigeria.org); every link to them goes through here.
-const learningOrigin = (
-  process.env.NEXT_PUBLIC_LEARNING_URL || "https://socialworknigeria.org"
-).replace(/\/$/, "");
-
-export const learningUrl = (path = "/") =>
-  new URL(path, `${learningOrigin}/`).toString();

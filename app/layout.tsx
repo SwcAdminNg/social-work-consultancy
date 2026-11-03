@@ -63,9 +63,6 @@ export const metadata: Metadata = {
     description: site.description,
     images: [shareImage],
   },
-  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
-    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
-    : undefined,
 };
 
 export const viewport: Viewport = {

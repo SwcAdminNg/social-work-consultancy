@@ -2,8 +2,6 @@
 // handover (25 October 2026). Section labels here decide placement only;
 // the wording is published as written.
 
-import { learningUrl } from "@/lib/site";
-
 const IMG = "/images/about-us";
 const HOME_IMG = "/images/home/swcl";
 
@@ -25,7 +23,6 @@ export const opening = {
   facts: [
     { label: "Based in", value: "Jos, Plateau State, Nigeria" },
     { label: "Working across", value: "Nigeria and the wider Global South" },
-    { label: "Learning platform", value: "socialworknigeria.org", href: learningUrl("/courses") },
   ],
 };
 
@@ -110,9 +107,6 @@ export const purpose = {
       focus: "66% 40%",
     },
   ] satisfies Chapter[],
-  // The text linked to the learning platform wherever it appears.
-  platformName: "Socialworknigeria.org",
-  platformHref: learningUrl("/courses"),
   invitation: {
     label: "An invitation",
     title: "Work with SWCL",

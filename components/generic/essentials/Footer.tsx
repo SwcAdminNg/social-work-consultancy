@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, GraduationCap, Mail, MapPin, Phone } from "lucide-react";
-import { learningUrl } from "@/lib/site";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 function IconFacebook() {
   return (
@@ -214,31 +213,6 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-        </div>
-
-        {/* ── Professional learning ── */}
-        <div className="mt-14 flex flex-col sm:flex-row sm:items-center justify-between gap-5 rounded-2xl bg-[#14402F] dark:bg-[#0F2A20] px-6 py-6 sm:px-8">
-          <div className="flex items-start gap-4">
-            <span className="flex-shrink-0 w-11 h-11 flex items-center justify-center rounded-xl bg-white/10 text-[#EBA937]">
-              <GraduationCap className="w-5 h-5" aria-hidden="true" />
-            </span>
-            <div>
-              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-[#EBA937]">
-                Professional learning
-              </p>
-              <p className="mt-1 text-sm text-white/85 leading-relaxed">
-                Visit socialworknigeria.org, Social Work Consultancy
-                Ltd.&rsquo;s dedicated learning platform.
-              </p>
-            </div>
-          </div>
-          <Link
-            href={learningUrl("/courses")}
-            className="group inline-flex items-center justify-center gap-2 self-start sm:self-center px-5 py-2.5 rounded-full bg-[#EBA937] text-[#10291E] text-sm font-bold hover:bg-[#f3bb57] transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#14402F]"
-          >
-            Explore courses
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </Link>
         </div>
 
         {/* ── Bottom bar ── */}

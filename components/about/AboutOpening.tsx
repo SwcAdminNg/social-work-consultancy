@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Eyebrow, Reveal, WordReveal } from "@/components/home/motion";
 import OpeningPhoto from "@/components/shared/OpeningPhoto";
 import { opening } from "./content";
@@ -74,16 +73,7 @@ export default function AboutOpening() {
                     {fact.label}
                   </dt>
                   <dd className="text-[0.98rem] font-medium text-gray-900 dark:text-[#ECF2EE]">
-                    {fact.href ? (
-                      <Link
-                        href={fact.href}
-                        className="text-[#2D6A4F] dark:text-[#74c69d] underline underline-offset-4 decoration-[#2D6A4F]/30 hover:decoration-current rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D6A4F]"
-                      >
-                        {fact.value}
-                      </Link>
-                    ) : (
-                      fact.value
-                    )}
+                    {fact.value}
                   </dd>
                 </div>
               ))}

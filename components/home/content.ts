@@ -1,8 +1,6 @@
 // Homepage copy, taken from the SWCL Homepage Content and Developer Handover
 // (25 October 2026). Keep wording in sync with that document.
 
-import { learningUrl } from "@/lib/site";
-
 const IMG = "/images/home/swcl";
 
 export type Photo = { src: string; alt: string };
@@ -53,7 +51,7 @@ export const heroSlides: HeroSlide[] = [
     image: `${IMG}/elearning.webp`,
     imageAlt: "A professional completing an online course on a laptop",
     focus: "47% 35%",
-    primary: { label: "Explore Our Learning Platform", href: learningUrl("/courses") },
+    primary: { label: "Explore E-Learning", href: "/e-learning" },
   },
   {
     id: "research",
@@ -244,7 +242,7 @@ export const learningOptions: ServiceCard[] = [
       "Foundation learning is intended to help students, new entrants and those in related roles develop a clearer understanding of the profession and identify areas for further study.",
       "Each course should explain whom it is designed for and any prior knowledge or experience required before enrolling.",
     ],
-    button: { label: "Explore Foundation Learning", href: learningUrl("/courses") },
+    button: { label: "Explore Foundation Learning", href: "/e-learning" },
   },
   {
     id: "cpd",
@@ -258,7 +256,7 @@ export const learningOptions: ServiceCard[] = [
       "Our CPD approach encourages you to connect your learning with your experience, consider what you might do differently, and reflect on the difference this could make to the people you work with.",
       "Individual course information sets out the learning outcomes, expected commitment, assessment arrangements, and any applicable certificate or accreditation.",
     ],
-    button: { label: "Explore CPD Opportunities", href: learningUrl("/courses") },
+    button: { label: "Explore CPD Opportunities", href: "/e-learning" },
   },
   {
     id: "organisational",
@@ -347,7 +345,7 @@ export const learningCta = {
   ],
   organisations:
     "For organisations, we can begin with a conversation about your workforce, service priorities and the changes you want learning to support.",
-  button: { label: "Visit Our Learning Platform", href: learningUrl("/courses") },
+  button: { label: "Explore E-Learning", href: "/e-learning" },
 };
 
 export const faqs = {

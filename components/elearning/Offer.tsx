@@ -1,29 +1,6 @@
-import Link from "next/link";
 import SectionHeading from "@/components/home/SectionHeading";
 import { Reveal } from "@/components/home/motion";
-import { approach, offer, platformHref, platformName } from "./content";
-
-// Links the learning platform's name wherever the copy mentions it.
-export function Copy({ text }: { text: string }) {
-  const parts = text.split(platformName);
-  return (
-    <>
-      {parts.map((part, i) => (
-        <span key={i}>
-          {part}
-          {i < parts.length - 1 && (
-            <Link
-              href={platformHref}
-              className="text-[#2D6A4F] dark:text-[#74c69d] underline underline-offset-4 decoration-[#2D6A4F]/30 hover:decoration-current rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D6A4F]"
-            >
-              {platformName}
-            </Link>
-          )}
-        </span>
-      ))}
-    </>
-  );
-}
+import { approach, offer } from "./content";
 
 /**
  * "Learning That Strengthens Practice": the offer described in full,
@@ -58,7 +35,7 @@ export default function Offer() {
               {rest.map((p, i) => (
                 <Reveal key={p} delay={0.06 * (i + 1)}>
                   <p className="t-body text-gray-600 dark:text-[#A3B3A9] max-w-[64ch]">
-                    <Copy text={p} />
+                    {p}
                   </p>
                 </Reveal>
               ))}

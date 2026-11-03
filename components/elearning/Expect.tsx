@@ -126,12 +126,6 @@ export default function Expect() {
                     aria-hidden="true"
                   />
                 </Link>
-                <Link
-                  href={next.secondary.href}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] text-[0.95rem] font-bold text-[#10291E] underline underline-offset-4 decoration-[#10291E]/30 hover:decoration-current rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10291E]"
-                >
-                  {next.secondary.label}
-                </Link>
                 <p className="mt-2 text-[0.85rem] leading-relaxed text-[#10291E]/75">
                   {next.clarification}
                 </p>

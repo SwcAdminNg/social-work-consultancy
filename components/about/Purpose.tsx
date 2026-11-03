@@ -4,30 +4,6 @@ import SectionHeading from "@/components/home/SectionHeading";
 import { ParallaxImage, Reveal } from "@/components/home/motion";
 import { purpose, type Chapter } from "./content";
 
-// Paragraph text with the learning platform's name linked wherever it occurs.
-function Copy({ text }: { text: string }) {
-  const { platformName, platformHref } = purpose;
-  if (!text.includes(platformName)) return <>{text}</>;
-  const parts = text.split(platformName);
-  return (
-    <>
-      {parts.map((part, i) => (
-        <span key={i}>
-          {part}
-          {i < parts.length - 1 && (
-            <Link
-              href={platformHref}
-              className="font-semibold text-[#F3C56B] underline underline-offset-4 decoration-[#F3C56B]/40 hover:decoration-current rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F3C56B]"
-            >
-              {platformName}
-            </Link>
-          )}
-        </span>
-      ))}
-    </>
-  );
-}
-
 // One strand of the work: a photograph and its explanation, side by side,
 // swapping sides down the page. Phones show the picture above the words.
 function ChapterRow({ chapter, index }: { chapter: Chapter; index: number }) {
@@ -62,7 +38,7 @@ function ChapterRow({ chapter, index }: { chapter: Chapter; index: number }) {
           {chapter.paragraphs.map((p, i) => (
             <Reveal key={p} delay={0.06 * (i + 1)}>
               <p>
-                <Copy text={p} />
+                {p}
               </p>
             </Reveal>
           ))}

@@ -3,17 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, ArrowUpRight, Mail, Phone } from "lucide-react";
+import { ArrowRight, Mail, Phone } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useSectionTheme } from "./useSectionTheme";
 import ThemeToggle from "@/components/generic/ThemeToggle";
-import { learningUrl } from "@/lib/site";
 
 const links = [
-  { name: "Our Courses", href: learningUrl("/courses") },
   { name: "Mentorship", href: "/mentorship" },
   { name: "About Us", href: "/about-us" },
-  { name: "Resources", href: learningUrl("/resources") },
   { name: "Contact Us", href: "/contact" },
 ];
 
@@ -222,7 +219,7 @@ export default function Navbar() {
       </motion.div>
 
       {/* Mobile menu: a full-height dark sheet. Links arrive one after
-          another; the platform link and contact details sit at the foot. */}
+          another; the contact details sit at the foot. */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -291,27 +288,6 @@ export default function Navbar() {
               </ul>
 
               <div className="mt-auto pt-10 space-y-3">
-                <motion.div variants={item}>
-                  <Link
-                    href={learningUrl("/courses")}
-                    onClick={() => setMenuOpen(false)}
-                    className="group flex items-center justify-between gap-4 rounded-[22px] bg-[#EBA937] text-[#10291E] p-5 no-underline active:scale-[0.99] transition-transform"
-                  >
-                    <span>
-                      <span className="block text-[0.7rem] font-bold uppercase tracking-[0.2em] text-[#10291E]/70">
-                        Professional learning
-                      </span>
-                      <span className="block mt-1 text-[1.05rem] font-bold leading-snug">
-                        Visit socialworknigeria.org
-                      </span>
-                    </span>
-                    <ArrowUpRight
-                      className="w-5 h-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                  </Link>
-                </motion.div>
-
                 <motion.div
                   variants={item}
                   className="pt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.85rem] text-white/60"
