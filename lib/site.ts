@@ -3,7 +3,7 @@
 // footer; the handover asks for one approved contact set before publication.
 
 export const site = {
-  name: "Social Work Nigeria",
+  name: "Social Work Consultancy",
   organisation: "Social Work Consultancy Ltd",
   shortName: "SWCL",
   // Platform code sent with every form submission, so the backend files

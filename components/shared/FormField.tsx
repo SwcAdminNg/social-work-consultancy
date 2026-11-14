@@ -4,7 +4,7 @@ import { useId } from "react";
 import { CircleAlert } from "lucide-react";
 
 export const fieldBox = (error?: boolean) =>
-  `w-full rounded-lg bg-white text-[1rem] text-ink placeholder:text-muted/60 border outline-none transition-[border-color,box-shadow] duration-150 ${
+  `w-full rounded-lg bg-white text-[1rem] text-ink placeholder:text-muted/60 border outline-none transition-[border-color,box-shadow,background-color] duration-150 disabled:bg-[#f4f6f5] disabled:text-ink/70 disabled:cursor-not-allowed ${
     error
       ? "border-red-500 focus:ring-4 focus:ring-red-500/15"
       : "border-[#cfd8d3] hover:border-[#aebcb5] focus:border-forest-700 focus:ring-4 focus:ring-forest-700/15"

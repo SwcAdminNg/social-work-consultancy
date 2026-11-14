@@ -146,7 +146,7 @@ export default function EnquiryForm({ config }: { config: EnquiryFormConfig }) {
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} noValidate>
+        <form onSubmit={handleSubmit} noValidate aria-busy={loading}>
           <p className="t-h3 text-forest">{config.heading}</p>
           <p className="mt-1 text-[0.9rem] text-muted">{config.replyNote}</p>
 
@@ -161,61 +161,64 @@ export default function EnquiryForm({ config }: { config: EnquiryFormConfig }) {
               </div>
             )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <FormField
-                name="name"
-                label="Full name"
-                autoComplete="name"
-                value={form.name}
-                onChange={update("name")}
-                onBlur={leave("name")}
-                error={shown("name")}
-              />
-              <FormField
-                name="email"
-                label="Email address"
-                type="email"
-                autoComplete="email"
-                inputMode="email"
-                value={form.email}
-                onChange={update("email")}
-                onBlur={leave("email")}
-                error={shown("email")}
-              />
-              <FormField
-                name="phone"
-                label="Phone number"
-                type="tel"
-                autoComplete="tel"
-                inputMode="tel"
-                optional
-                value={form.phone}
-                onChange={update("phone")}
-                onBlur={leave("phone")}
-                error={shown("phone")}
-              />
-              {config.subjectLabel && (
+            {/* Fields stay readable but locked while the message sends. */}
+            <fieldset disabled={loading} className="m-0 p-0 border-0 min-w-0 space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <FormField
-                  name="subject"
-                  label={config.subjectLabel}
-                  value={form.subject}
-                  onChange={update("subject")}
-                  onBlur={leave("subject")}
-                  error={shown("subject")}
+                  name="name"
+                  label="Full name"
+                  autoComplete="name"
+                  value={form.name}
+                  onChange={update("name")}
+                  onBlur={leave("name")}
+                  error={shown("name")}
                 />
-              )}
-            </div>
+                <FormField
+                  name="email"
+                  label="Email address"
+                  type="email"
+                  autoComplete="email"
+                  inputMode="email"
+                  value={form.email}
+                  onChange={update("email")}
+                  onBlur={leave("email")}
+                  error={shown("email")}
+                />
+                <FormField
+                  name="phone"
+                  label="Phone number"
+                  type="tel"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  optional
+                  value={form.phone}
+                  onChange={update("phone")}
+                  onBlur={leave("phone")}
+                  error={shown("phone")}
+                />
+                {config.subjectLabel && (
+                  <FormField
+                    name="subject"
+                    label={config.subjectLabel}
+                    value={form.subject}
+                    onChange={update("subject")}
+                    onBlur={leave("subject")}
+                    error={shown("subject")}
+                  />
+                )}
+              </div>
 
-            <FormField
-              name="message"
-              label={config.messageLabel}
-              multiline
-              value={form.message}
-              onChange={update("message")}
-              onBlur={leave("message")}
-              error={shown("message")}
-              hint={config.messagePrompt}
-            />
+              <FormField
+                name="message"
+                label={config.messageLabel}
+                multiline
+                value={form.message}
+                onChange={update("message")}
+                onBlur={leave("message")}
+                error={shown("message")}
+                hint={config.messagePrompt}
+              />
+            </fieldset>
 
             {config.notice && (
               <p className="flex gap-2.5 pt-1 text-[0.85rem] leading-relaxed text-muted">
@@ -231,8 +234,8 @@ export default function EnquiryForm({ config }: { config: EnquiryFormConfig }) {
             >
               {loading ? (
                 <>
-                  <IconSpinner />
-                  Sending…
+                  <IconSpinner className="w-5 h-5" />
+                  <span role="status">Sending your message…</span>
                 </>
               ) : (
                 <>

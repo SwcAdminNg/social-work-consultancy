@@ -172,7 +172,7 @@ export function IconArrowRight() {
 export function IconSpinner({ className }: { className?: string }) {
   return (
     <svg
-      className={`animate-spin ${className ?? ""}`}
+      className={`animate-spin shrink-0 ${className ?? "w-5 h-5"}`}
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"

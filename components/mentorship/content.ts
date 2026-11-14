@@ -17,7 +17,7 @@ export const intro = {
   eyebrow: "Why mentorship",
   title: "Walking Alongside You as You Grow",
   paragraphs: [
-    "At Social Work Nigeria, we believe that mentorship is key to developing a skilled, ethical, and confident social services workforce.",
+    "At Social Work Consultancy, we believe that mentorship is key to developing a skilled, ethical, and confident social services workforce.",
     "Our Mentorship Programme is designed to support social work students, recent graduates, and early-career professionals in their personal and professional growth.",
     "Whether you're preparing for your first field placement, considering postgraduate study, or seeking career guidance, our mentors are here to walk alongside you, offering insight, encouragement, and practical tools.",
   ],
