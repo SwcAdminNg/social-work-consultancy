@@ -16,6 +16,7 @@ import Container from "@/components/ui/Container";
 import { GoldRule } from "@/components/ui/SectionHeading";
 import { interest, opportunityTypes, type OpportunityType } from "./content";
 import { INTEREST_EVENT } from "./interestEvent";
+import { site } from "@/lib/site";
 
 type FormValues = {
   name: string;
@@ -189,7 +190,7 @@ export default function InterestForm() {
             "",
             form.statement,
           ].join("\n"),
-          platform: "NG",
+          platform: site.platform,
           category: "general",
           source_page: "/careers-and-volunteering",
         }),

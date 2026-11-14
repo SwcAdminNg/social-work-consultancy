@@ -6,6 +6,9 @@ export const site = {
   name: "Social Work Nigeria",
   organisation: "Social Work Consultancy Ltd",
   shortName: "SWCL",
+  // Platform code sent with every form submission, so the backend files
+  // this site's messages under socialwork-consultancy.com, not the NG site.
+  platform: "COM" as const,
   url: "https://socialwork-consultancy.com",
   locale: "en_NG",
   language: "en",

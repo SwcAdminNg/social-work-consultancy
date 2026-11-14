@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight, Check, CircleAlert, Info } from "lucide-react";
 import { IconSpinner } from "@/components/auth/shared/icons";
 import FormField from "@/components/shared/FormField";
+import { site } from "@/lib/site";
 
 export type EnquiryFormConfig = {
   heading: string;
@@ -98,7 +99,7 @@ export default function EnquiryForm({ config }: { config: EnquiryFormConfig }) {
           phone_number: phone || undefined,
           subject: config.subjectLabel ? form.subject.trim() : config.defaultSubject,
           message: form.message,
-          platform: "NG",
+          platform: site.platform,
           category: config.category,
           source_page: config.sourcePage,
         }),

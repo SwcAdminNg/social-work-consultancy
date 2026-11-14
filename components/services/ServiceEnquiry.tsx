@@ -8,6 +8,7 @@ import FormField from "@/components/shared/FormField";
 import { GoldRule } from "@/components/ui/SectionHeading";
 import type { EnquiryTone } from "./ServicePage";
 import type { ServicePageContent } from "./types";
+import { site } from "@/lib/site";
 
 type FormValues = {
   name: string;
@@ -108,7 +109,7 @@ export default function ServiceEnquiry({
           message: organisation
             ? `Organisation: ${organisation}\n\n${form.message}`
             : form.message,
-          platform: "NG",
+          platform: site.platform,
           category: "general",
           source_page: sourcePage,
         }),

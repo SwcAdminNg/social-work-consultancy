@@ -6,6 +6,7 @@ import { IconSpinner } from "@/components/auth/shared/icons";
 import FormField from "@/components/shared/FormField";
 import Container from "@/components/ui/Container";
 import { contact } from "./content";
+import { site } from "@/lib/site";
 
 type FormValues = {
   full_name: string;
@@ -90,7 +91,7 @@ export default function HomeContact() {
           phone_number: phone || undefined,
           subject: organisation ? `Website enquiry from ${organisation}` : "Website enquiry",
           message: organisation ? `Organisation: ${organisation}\n\n${form.message}` : form.message,
-          platform: "NG",
+          platform: site.platform,
           category: "general",
           source_page: "/",
         }),
