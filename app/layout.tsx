@@ -1,12 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import { shareImage, site } from "@/lib/site";
-import { Roboto } from "next/font/google";
+import { Roboto, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/generic/ThemeProvider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
   weight: ["300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+});
+
+// Serif used for headings, as in the client's page concepts.
+const serif = Source_Serif_4({
+  variable: "--font-serif-display",
+  weight: ["400", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -68,11 +75,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  colorScheme: "light dark",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1410" },
-  ],
+  colorScheme: "light",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -81,7 +85,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${roboto.variable} scroll-smooth`} suppressHydrationWarning data-scroll-behavior="smooth">
+    <html lang="en" className={`${roboto.variable} ${serif.variable} scroll-smooth`} suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${roboto.className} antialiased`}>
         <ThemeProvider>
           {children}

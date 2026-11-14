@@ -3,7 +3,6 @@
 // Placement notes and link instructions are implemented, not published.
 
 const IMG = "/images/e-learning";
-const SWCL = "/images/home/swcl";
 
 export const opening = {
   eyebrow: "Our services",
@@ -14,7 +13,6 @@ export const opening = {
   imageHeight: 941,
   imageAlt:
     "Three adult learners study with laptops and notebooks in a bright learning space.",
-  imageNote: "Illustrative image",
 };
 
 export const offer = {
@@ -37,33 +35,21 @@ export const audiences = {
       id: "students",
       title: "Students and those exploring social work",
       text: "Develop an understanding of the profession’s purpose, values and approaches, and connect academic learning with practice settings.",
-      image: `${SWCL}/foundation-learning.webp`,
-      imageAlt: "A learner studying at a desk with a notebook and laptop",
-      focus: "50% 35%",
     },
     {
       id: "practitioners",
       title: "Practising social workers and related professionals",
       text: "Deepen knowledge, examine practice challenges, and identify areas for continuing professional development.",
-      image: `${SWCL}/cpd-training.webp`,
-      imageAlt: "Professionals in a group discussion around a table",
-      focus: "50% 40%",
     },
     {
       id: "educators",
       title: "Educators, caregivers and community practitioners",
       text: "Explore the relevant knowledge and skills within the responsibilities and boundaries of your role.",
-      image: `${SWCL}/listening-with-care.webp`,
-      imageAlt: "A practitioner listening carefully and taking notes during a meeting",
-      focus: "66% 40%",
     },
     {
       id: "organisations",
       title: "NGOs, institutions and service providers",
       text: "Consider learning that supports staff development, shared understanding and organisational priorities.",
-      image: `${SWCL}/organisational-learning.webp`,
-      imageAlt: "A team working together on organisational learning",
-      focus: "50% 40%",
     },
   ],
   note: "Each course description should explain its intended audience and any prior knowledge or experience required before enrolling.",

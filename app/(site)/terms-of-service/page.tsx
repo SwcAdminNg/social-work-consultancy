@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PageOpening from "@/components/shared/PageOpening";
+import PageTitle from "@/components/ui/PageTitle";
 import { TermsContent } from "@/components/terms/TermsContent";
 import { absoluteUrl, shareImage, site } from "@/lib/site";
 
@@ -68,16 +68,14 @@ export default function TermsOfServicePage() {
           __html: JSON.stringify(structuredData()).replace(/</g, "\\u003c"),
         }}
       />
-      <PageOpening
-        id="terms-heading"
-        eyebrow="Legal"
+      <PageTitle
         title="Terms of Service"
-        tagline="The terms that apply to every registered user of the SWCL learning platform."
+        subtitle="The terms that apply to every registered user of the SWCL learning platform."
       >
-        <span className="inline-flex items-center rounded-full bg-white dark:bg-[#16231C] ring-1 ring-black/5 dark:ring-white/10 px-4 py-1.5 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[#14402F] dark:text-[#C3D1C8]">
+        <p className="mt-5 inline-flex items-center rounded-full bg-white border border-[#ece3cf] px-4 py-1.5 t-eyebrow text-forest-700">
           Last updated {updated}
-        </span>
-      </PageOpening>
+        </p>
+      </PageTitle>
       <TermsContent />
     </>
   );

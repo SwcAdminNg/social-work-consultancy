@@ -450,13 +450,3 @@ export const contact = {
   button: "Send Your Enquiry",
 };
 
-// Section index shown down the right-hand edge on large screens.
-export const sectionIndex = [
-  { id: "about", label: "Introduction" },
-  { id: "services", label: "Services" },
-  { id: "learning", label: "Learning" },
-  { id: "learning-options", label: "Ways to learn" },
-  { id: "learning-areas", label: "Learning areas" },
-  { id: "faqs", label: "FAQs" },
-  { id: "contact", label: "Contact" },
-];

@@ -57,7 +57,12 @@ export default function PolicyAndAdvocacyPage() {
           __html: JSON.stringify(data).replace(/</g, "\\u003c"),
         }}
       />
-      <ServicePage content={policy} icons={icons} />
+      <ServicePage
+        content={policy}
+        icons={icons}
+        iconTones={["mint", "goldSoft", "mint", "goldSoft", "mint"]}
+        tone="slate"
+      />
     </>
   );
 }

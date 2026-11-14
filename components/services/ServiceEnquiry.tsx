@@ -5,8 +5,8 @@ import Link from "next/link";
 import { ArrowRight, Check, CircleAlert, Info } from "lucide-react";
 import { IconSpinner } from "@/components/auth/shared/icons";
 import FormField from "@/components/shared/FormField";
-import SectionHeading from "@/components/home/SectionHeading";
-import { Reveal } from "@/components/home/motion";
+import { GoldRule } from "@/components/ui/SectionHeading";
+import type { EnquiryTone } from "./ServicePage";
 import type { ServicePageContent } from "./types";
 
 type FormValues = {
@@ -50,10 +50,12 @@ function validate(values: FormValues): Errors {
 export default function ServiceEnquiry({
   enquiry,
   sourcePage,
+  tone = "cream",
 }: {
   enquiry: ServicePageContent["enquiry"];
   // The page's path, recorded on the message so admins see where it came from.
   sourcePage: string;
+  tone?: EnquiryTone;
 }) {
   const [form, setForm] = useState<FormValues>(emptyForm);
   const [errors, setErrors] = useState<Errors>({});
@@ -132,187 +134,197 @@ export default function ServiceEnquiry({
     }
   };
 
+  const slate = tone === "slate";
+
   return (
     <section
       id="enquiry"
       aria-labelledby="enquiry-heading"
-      className="relative bg-[#EEF5F1] dark:bg-[#101B15] rounded-t-[40px] md:rounded-t-[56px] -mt-10 pt-24 pb-24 md:pt-32 md:pb-32 scroll-mt-20"
+      className={`relative overflow-hidden py-14 sm:py-20 scroll-mt-20 ${
+        slate ? "bg-[#dce7e4]" : "bg-cream"
+      }`}
     >
-      <div className="max-w-6xl mx-auto px-6 md:px-10 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 lg:gap-16 items-start">
-        <div>
-          <SectionHeading
-            id="enquiry-heading"
-            eyebrow={enquiry.eyebrow}
-            title={enquiry.title}
-          >
-            {enquiry.paragraphs.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
-          </SectionHeading>
+      {!slate && <Leaf />}
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-10 lg:gap-14 items-start">
+        <div className={slate ? "" : "lg:text-center lg:px-6"}>
+          <p className="t-eyebrow text-forest-700">{enquiry.eyebrow}</p>
+          <h2 id="enquiry-heading" className="mt-3 t-h2 text-forest">
+            {enquiry.title}
+          </h2>
+          {!slate && <GoldRule className="mt-5 lg:mx-auto" />}
+          {enquiry.paragraphs.map((p) => (
+            <p key={p} className="mt-4 t-body text-ink/85">
+              {p}
+            </p>
+          ))}
+          {slate && <GoldRule className="mt-6" />}
 
-          <Reveal delay={0.15}>
-            <p className="mt-10 text-[0.72rem] font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-[#A3B3A9]">
+          <div className={`mt-8 text-left ${slate ? "" : "lg:max-w-md lg:mx-auto"}`}>
+            <p className="text-[0.95rem] font-semibold text-forest">
               {enquiry.helpfulLead}
             </p>
-            <ul className="mt-4 divide-y divide-gray-900/10 dark:divide-white/10 border-y border-gray-900/10 dark:border-white/10">
+            <ul className="mt-3 list-none m-0 p-0 space-y-2">
               {enquiry.helpful.map((item) => (
                 <li
                   key={item}
-                  className="flex items-start gap-3.5 py-3.5 text-[0.98rem] leading-snug text-gray-800 dark:text-[#D7E2DB]"
+                  className="flex items-start gap-3 text-[0.95rem] leading-snug text-ink/85"
                 >
                   <span
-                    className="mt-[0.45rem] w-1.5 h-1.5 shrink-0 rounded-full bg-[#EBA937]"
+                    className="mt-[0.45rem] w-1.5 h-1.5 shrink-0 rounded-full bg-gold"
                     aria-hidden="true"
                   />
                   {item}
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </div>
         </div>
 
-        <Reveal from="up" delay={0.1}>
-          <div className="bg-white dark:bg-[#16231C] text-gray-900 dark:text-[#ECF2EE] rounded-[32px] p-6 sm:p-10 ring-1 ring-black/5 dark:ring-white/10 shadow-[0_50px_100px_-50px_rgba(20,64,47,0.35)] dark:shadow-none">
-            {sent ? (
-              <div role="status" className="flex flex-col items-start gap-5 py-6">
-                <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#2D6A4F] text-white">
-                  <Check className="w-7 h-7" aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="text-[1.35rem] leading-snug font-bold tracking-[-0.02em]">
-                    {confirmation.title}
-                  </p>
-                  <p className="mt-3 t-body text-gray-600 dark:text-[#A3B3A9]">
-                    {confirmation.text}
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setSent(false)}
-                  className="group inline-flex items-center gap-2 text-[0.95rem] font-bold text-[#2D6A4F] dark:text-[#74c69d] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D6A4F] cursor-pointer"
-                >
-                  Send another enquiry
-                  <ArrowRight
-                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                    aria-hidden="true"
+        <div className="bg-white text-ink rounded-2xl p-5 sm:p-8 border border-[#e3e9e5] shadow-[0_24px_60px_-40px_rgba(15,61,46,0.45)]">
+          {sent ? (
+            <div role="status" className="flex flex-col items-start gap-5 py-6">
+              <span className="flex items-center justify-center w-14 h-14 rounded-full bg-forest-700 text-white">
+                <Check className="w-7 h-7" aria-hidden="true" />
+              </span>
+              <div>
+                <p className="t-h3 text-forest">{confirmation.title}</p>
+                <p className="mt-3 t-body text-muted">{confirmation.text}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSent(false)}
+                className="group inline-flex items-center gap-2 text-[0.95rem] font-semibold text-forest-700 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 cursor-pointer"
+              >
+                Send another enquiry
+                <ArrowRight
+                  className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} noValidate>
+              <p className="t-h3 text-forest">{labels.heading}</p>
+              <p className="mt-1 text-[0.9rem] text-muted">{labels.replyNote}</p>
+
+              <div className="mt-6 space-y-4">
+                {failure && (
+                  <div
+                    role="alert"
+                    className="flex items-start gap-2.5 p-4 rounded-lg bg-red-50 text-red-700 text-[0.9rem] font-medium"
+                  >
+                    <CircleAlert className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" />
+                    {failure}
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <FormField
+                    name="name"
+                    label={labels.labels.name}
+                    autoComplete="name"
+                    value={form.name}
+                    onChange={update("name")}
+                    onBlur={leave("name")}
+                    error={shown("name")}
                   />
+                  <FormField
+                    name="email"
+                    label={labels.labels.email}
+                    type="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    value={form.email}
+                    onChange={update("email")}
+                    onBlur={leave("email")}
+                    error={shown("email")}
+                  />
+                  <FormField
+                    name="organisation"
+                    label={labels.labels.organisation}
+                    autoComplete="organization"
+                    optional
+                    value={form.organisation}
+                    onChange={update("organisation")}
+                    onBlur={leave("organisation")}
+                  />
+                  <FormField
+                    name="phone"
+                    label={labels.labels.phone}
+                    type="tel"
+                    autoComplete="tel"
+                    inputMode="tel"
+                    optional
+                    value={form.phone}
+                    onChange={update("phone")}
+                    onBlur={leave("phone")}
+                    error={shown("phone")}
+                  />
+                </div>
+
+                <FormField
+                  name="message"
+                  label={labels.labels.message}
+                  multiline
+                  value={form.message}
+                  onChange={update("message")}
+                  onBlur={leave("message")}
+                  error={shown("message")}
+                  hint={labels.messagePrompt}
+                />
+
+                <p className="flex gap-2.5 pt-1 text-[0.85rem] leading-relaxed text-muted">
+                  <Info className="w-4 h-4 mt-0.5 shrink-0 text-gold-600" aria-hidden="true" />
+                  <span>
+                    {enquiry.notice} Read our{" "}
+                    <Link
+                      href={labels.privacy.href}
+                      className="text-forest-700 underline underline-offset-4 decoration-forest-700/40 hover:decoration-current rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700"
+                    >
+                      {labels.privacy.label}
+                    </Link>
+                    .
+                  </span>
+                </p>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="mt-2 inline-flex items-center justify-center gap-2 w-full min-h-12 py-3 bg-forest-700 text-white text-[1rem] font-semibold rounded-lg hover:bg-forest disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-forest-700/40"
+                >
+                  {loading ? (
+                    <>
+                      <IconSpinner />
+                      Sending…
+                    </>
+                  ) : (
+                    labels.button
+                  )}
                 </button>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} noValidate>
-                <p className="text-[1.25rem] font-bold tracking-[-0.02em]">
-                  {labels.heading}
-                </p>
-                <p className="mt-1 text-[0.9rem] text-gray-500 dark:text-[#A3B3A9]">
-                  {labels.replyNote}
-                </p>
-
-                <div className="mt-7 space-y-4">
-                  {failure && (
-                    <div
-                      role="alert"
-                      className="flex items-start gap-2.5 p-4 rounded-2xl bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 text-[0.9rem] font-medium"
-                    >
-                      <CircleAlert className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" />
-                      {failure}
-                    </div>
-                  )}
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <FormField
-                      name="name"
-                      label={labels.labels.name}
-                      autoComplete="name"
-                      value={form.name}
-                      onChange={update("name")}
-                      onBlur={leave("name")}
-                      error={shown("name")}
-                    />
-                    <FormField
-                      name="email"
-                      label={labels.labels.email}
-                      type="email"
-                      autoComplete="email"
-                      inputMode="email"
-                      value={form.email}
-                      onChange={update("email")}
-                      onBlur={leave("email")}
-                      error={shown("email")}
-                    />
-                    <FormField
-                      name="organisation"
-                      label={labels.labels.organisation}
-                      autoComplete="organization"
-                      optional
-                      value={form.organisation}
-                      onChange={update("organisation")}
-                      onBlur={leave("organisation")}
-                    />
-                    <FormField
-                      name="phone"
-                      label={labels.labels.phone}
-                      type="tel"
-                      autoComplete="tel"
-                      inputMode="tel"
-                      optional
-                      value={form.phone}
-                      onChange={update("phone")}
-                      onBlur={leave("phone")}
-                      error={shown("phone")}
-                    />
-                  </div>
-
-                  <FormField
-                    name="message"
-                    label={labels.labels.message}
-                    multiline
-                    value={form.message}
-                    onChange={update("message")}
-                    onBlur={leave("message")}
-                    error={shown("message")}
-                    hint={labels.messagePrompt}
-                  />
-
-                  <p className="flex gap-2.5 pt-1 text-[0.82rem] leading-relaxed text-gray-500 dark:text-[#A3B3A9]">
-                    <Info
-                      className="w-4 h-4 mt-0.5 shrink-0 text-[#B7791F]"
-                      aria-hidden="true"
-                    />
-                    <span>
-                      {enquiry.notice} Read our{" "}
-                      <Link
-                        href={labels.privacy.href}
-                        className="text-[#2D6A4F] dark:text-[#74c69d] underline underline-offset-4 decoration-[#2D6A4F]/30 hover:decoration-current rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D6A4F]"
-                      >
-                        {labels.privacy.label}
-                      </Link>
-                      .
-                    </span>
-                  </p>
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="mt-2 inline-flex items-center justify-center gap-2 w-full h-14 bg-[#2D6A4F] text-white text-[1rem] font-bold rounded-2xl hover:bg-[#1e4d38] disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.99] transition-[background-color,scale,opacity] duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#2D6A4F]/40"
-                  >
-                    {loading ? (
-                      <>
-                        <IconSpinner />
-                        Sending…
-                      </>
-                    ) : (
-                      <>
-                        {labels.button}
-                        <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                      </>
-                    )}
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
-        </Reveal>
+            </form>
+          )}
+        </div>
       </div>
     </section>
+  );
+}
+
+// The faint leaf spray in the corner of the research form band.
+function Leaf() {
+  return (
+    <svg
+      viewBox="0 0 120 260"
+      className="pointer-events-none absolute -left-6 bottom-0 w-28 sm:w-36 h-auto text-[#9fb79f] opacity-40"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M58 260 C60 190 62 120 70 20" stroke="currentColor" strokeWidth="2" fill="none" />
+      <path d="M62 200 C30 196 10 176 4 150 C34 152 54 170 62 200Z" />
+      <path d="M63 170 C92 160 108 138 112 112 C84 118 66 140 63 170Z" />
+      <path d="M65 135 C36 128 20 106 18 80 C46 86 62 108 65 135Z" />
+      <path d="M67 100 C92 90 104 70 106 46 C82 54 68 74 67 100Z" />
+      <path d="M69 62 C50 54 42 36 44 16 C62 26 70 42 69 62Z" />
+    </svg>
   );
 }

@@ -1,68 +1,80 @@
-import Link from "next/link";
-import SectionHeading from "./SectionHeading";
-import { Reveal } from "./motion";
+"use client";
+
+import { useId, useState } from "react";
+import { Minus, Plus } from "lucide-react";
+import Container from "@/components/ui/Container";
 import { faqs } from "./content";
 
 /**
- * "Understanding SWCL and How We Can Support You". Every question is shown
- * with its answer — nothing to click open — each settling into view as the
- * reader scrolls, with the heading pinned alongside on large screens.
+ * Frequently asked questions: the heading on the left and an accordion of
+ * white rows on the right. Each row is a button that states whether its
+ * answer is open; several can be open at once.
  */
 export default function HomeFAQ() {
+  const [open, setOpen] = useState<Set<number>>(new Set());
+  const base = useId();
+
+  const toggle = (i: number) =>
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
+
   return (
     <section
       id="faqs"
       aria-labelledby="faqs-heading"
-      className="relative bg-white dark:bg-[#0B1410] pt-20 pb-24 md:pt-28 md:pb-36 scroll-mt-20"
+      className="bg-mint py-14 sm:py-20 scroll-mt-24"
     >
-      <div className="max-w-6xl mx-auto px-6 md:px-10 grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] gap-10 lg:gap-20 items-start">
+      <Container className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14 items-start">
         <div className="lg:sticky lg:top-28">
-          <SectionHeading
-            id="faqs-heading"
-            eyebrow={faqs.eyebrow}
-            title={faqs.title}
-          />
-          <Reveal delay={0.25}>
-            <p className="mt-6 t-body text-gray-600 dark:text-[#A3B3A9]">
-              Can’t find what you’re looking for?{" "}
-              <Link
-                href="#contact"
-                className="font-semibold text-[#2D6A4F] dark:text-[#74c69d] underline underline-offset-4 decoration-[#2D6A4F]/30 hover:decoration-current rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D6A4F]"
-              >
-                Send us an enquiry
-              </Link>
-              .
-            </p>
-          </Reveal>
+          <p className="t-eyebrow text-forest-700">FAQs</p>
+          <h2 id="faqs-heading" className="mt-3 t-h2 text-forest">
+            {faqs.title}
+          </h2>
         </div>
-
-        <ol className="border-t border-gray-200 dark:border-white/10">
-          {faqs.items.map((item, i) => (
-            <li
-              key={item.q}
-              className="border-b border-gray-200 dark:border-white/10"
-            >
-              <Reveal amount={0.15}>
-                <div className="grid grid-cols-[2.5rem_1fr] gap-4 py-7 md:py-8">
-                  <span className="pt-1 text-[0.8rem] font-bold tabular-nums text-[#B7791F] dark:text-[#F3C56B]">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="text-[1.05rem] md:text-[1.15rem] font-semibold leading-snug tracking-[-0.01em] text-gray-900 dark:text-[#ECF2EE]">
-                      {item.q}
-                    </h3>
-                    <div className="mt-3 space-y-3 text-[0.98rem] leading-relaxed text-gray-600 dark:text-[#A3B3A9] max-w-[62ch]">
-                      {item.a.map((p) => (
-                        <p key={p}>{p}</p>
-                      ))}
-                    </div>
-                  </div>
+        <ul className="list-none m-0 p-0 space-y-2.5">
+          {faqs.items.map((item, i) => {
+            const isOpen = open.has(i);
+            const panel = `${base}-a${i}`;
+            const button = `${base}-q${i}`;
+            return (
+              <li key={item.q} className="bg-white rounded-lg border border-[#dfe8e3]">
+                <h3>
+                  <button
+                    id={button}
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={panel}
+                    onClick={() => toggle(i)}
+                    className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left text-[0.98rem] font-medium text-ink hover:text-forest-700 rounded-lg cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700/40"
+                  >
+                    {item.q}
+                    {isOpen ? (
+                      <Minus className="w-5 h-5 shrink-0 text-forest-700" aria-hidden="true" />
+                    ) : (
+                      <Plus className="w-5 h-5 shrink-0 text-forest-700" aria-hidden="true" />
+                    )}
+                  </button>
+                </h3>
+                <div
+                  id={panel}
+                  role="region"
+                  aria-labelledby={button}
+                  hidden={!isOpen}
+                  className="px-5 pb-5 space-y-3 text-[0.95rem] leading-relaxed text-muted"
+                >
+                  {item.a.map((p) => (
+                    <p key={p}>{p}</p>
+                  ))}
                 </div>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
-      </div>
+              </li>
+            );
+          })}
+        </ul>
+      </Container>
     </section>
   );
 }

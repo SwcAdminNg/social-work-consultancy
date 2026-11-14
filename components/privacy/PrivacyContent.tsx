@@ -60,7 +60,7 @@ const sections: LegalSection[] = [
           acknowledge our responsibility to prevent abuse, uphold the rights of children and
           vulnerable adults, and foster safe, inclusive learning environments.
         </p>
-        <p className="font-semibold text-gray-900 dark:text-[#ECF2EE]">
+        <p className="font-semibold text-ink">
           Our safeguarding practices include:
         </p>
         <ul className="space-y-3">
@@ -87,7 +87,7 @@ const sections: LegalSection[] = [
         </p>
         <a
           href={`mailto:${supportEmail}`}
-          className="inline-flex items-center gap-2.5 min-h-[50px] px-6 rounded-full bg-[#14402F] text-white text-[0.92rem] font-bold hover:bg-[#0c2a1e] transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#14402F]/40 [overflow-wrap:anywhere]"
+          className="inline-flex items-center gap-2.5 min-h-[50px] px-6 rounded-full bg-forest-700 text-white text-[0.92rem] font-semibold hover:bg-forest transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-forest-700/40 [overflow-wrap:anywhere]"
         >
           <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
           {supportEmail}

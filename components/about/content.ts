@@ -3,7 +3,6 @@
 // the wording is published as written.
 
 const IMG = "/images/about-us";
-const HOME_IMG = "/images/home/swcl";
 
 export const opening = {
   eyebrow: "About SWCL",
@@ -18,12 +17,6 @@ export const opening = {
   image: `${IMG}/facilitating-discussion.webp`,
   imageAlt:
     "Four professionals discuss practice around a table, with a woman facilitating the conversation.",
-  imageNote: "Illustrative image",
-  // Short facts drawn from the page copy and the handover.
-  facts: [
-    { label: "Based in", value: "Jos, Plateau State, Nigeria" },
-    { label: "Working across", value: "Nigeria and the wider Global South" },
-  ],
 };
 
 export const vision = {
@@ -44,10 +37,6 @@ export type Chapter = {
   id: string;
   title: string;
   paragraphs: string[];
-  image: string;
-  imageAlt: string;
-  // Focal point kept in view when the photograph is cropped tall.
-  focus: string;
 };
 
 export const purpose = {
@@ -67,9 +56,6 @@ export const purpose = {
         "Our approach encourages learners to explore realistic situations, reflect on their assumptions and consider how knowledge applies to their own setting. We recognise that development continues through experience, feedback, collaboration and reflection.",
         "Socialworknigeria.org is the dedicated e-learning platform of Social Work Consultancy Ltd. It supports the training and professional development aspects of our work, alongside SWCL’s wider research, policy, advocacy and consultancy services.",
       ],
-      image: `${HOME_IMG}/elearning.webp`,
-      imageAlt: "A practitioner studying online at a laptop",
-      focus: "40% 40%",
     },
     {
       id: "evidence",
@@ -79,9 +65,6 @@ export const purpose = {
         "Our research and evaluation support this understanding. We emphasise clear questions, appropriate methods and findings that can inform practical decisions.",
         "We also recognise the importance of listening to people with lived experience. Their perspectives can reveal barriers, strengths and priorities that organisational information alone may overlook.",
       ],
-      image: `${HOME_IMG}/research.webp`,
-      imageAlt: "A researcher reviewing printed charts and findings at a desk",
-      focus: "45% 55%",
     },
     {
       id: "policy",
@@ -90,9 +73,6 @@ export const purpose = {
         "Policies shape professional expectations, access to support, and how organisations respond to need. Their value depends on how clearly they are understood and how effectively they can be implemented.",
         "Through policy and consultancy work, we help organisations examine their approaches, identify development priorities, and consider practical improvements. Our advocacy approach connects evidence with participation, helping organisations communicate issues and engage relevant stakeholders.",
       ],
-      image: `${HOME_IMG}/policy.webp`,
-      imageAlt: "The National Assembly building in Abuja under a clear sky",
-      focus: "60% 50%",
     },
     {
       id: "context",
@@ -102,9 +82,6 @@ export const purpose = {
         "Culture, language, family and community relationships, economic circumstances, and available services all shape practice. We encourage approaches that take these realities seriously and respond respectfully to those involved.",
         "We welcome engagement with social workers, students, educators, carers, NGOs, community organisations, public institutions and professionals in related fields. We start by understanding their responsibilities, priorities, and support needs.",
       ],
-      image: `${HOME_IMG}/listening-with-care.webp`,
-      imageAlt: "A social worker listening attentively to a woman across a desk",
-      focus: "66% 40%",
     },
   ] satisfies Chapter[],
   invitation: {

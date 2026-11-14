@@ -117,7 +117,7 @@ const sections: LegalSection[] = [
           Course fees are non-refundable once access to course content has been granted, except
           as set out in the SWCL Refund Policy.
         </p>
-        <div className="rounded-[20px] bg-[#EEF5F1] dark:bg-[#0F1A14] ring-1 ring-black/5 dark:ring-white/10 p-5 md:p-6">
+        <div className="rounded-[20px] bg-mint p-5 md:p-6">
           <ul className="space-y-3">
             <Point>
               <Term>Full refund:</Term> within 24 hours of payment if no content has been
@@ -144,7 +144,7 @@ const sections: LegalSection[] = [
           available at{" "}
           <a
             href="https://socialworknigeria.org"
-            className="text-[#2D6A4F] dark:text-[#74c69d] underline underline-offset-4 decoration-[#2D6A4F]/30 hover:decoration-current rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D6A4F]"
+            className="text-forest-700 underline underline-offset-4 decoration-forest-700/40 hover:decoration-current rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -208,7 +208,7 @@ export function TermsContent() {
   return (
     <LegalDocument
       intro={
-        <p className="t-lead font-normal text-gray-900 dark:text-[#ECF2EE]">
+        <p className="t-lead font-normal text-ink">
           The following Terms of Service apply to all registered users of the SWCL LMS
           platform. By creating an account and accessing the platform, users agree to be bound
           by these terms in full.

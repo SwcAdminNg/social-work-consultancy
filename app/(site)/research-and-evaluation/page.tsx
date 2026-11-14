@@ -57,7 +57,12 @@ export default function ResearchAndEvaluationPage() {
           __html: JSON.stringify(data).replace(/</g, "\\u003c"),
         }}
       />
-      <ServicePage content={research} icons={icons} />
+      <ServicePage
+        content={research}
+        icons={icons}
+        iconTones={["olive", "slate", "gold", "olive", "slate"]}
+        tone="cream"
+      />
     </>
   );
 }

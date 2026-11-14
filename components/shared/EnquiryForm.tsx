@@ -121,24 +121,24 @@ export default function EnquiryForm({ config }: { config: EnquiryFormConfig }) {
   };
 
   return (
-    <div className="bg-white dark:bg-[#16231C] text-gray-900 dark:text-[#ECF2EE] rounded-[32px] p-6 sm:p-10 ring-1 ring-black/5 dark:ring-white/10 shadow-[0_50px_100px_-50px_rgba(20,64,47,0.35)] dark:shadow-none">
+    <div className="bg-white text-ink rounded-2xl p-5 sm:p-8 border border-[#e3e9e5] shadow-[0_24px_60px_-40px_rgba(15,61,46,0.45)]">
       {sent ? (
         <div role="status" className="flex flex-col items-start gap-5 py-6">
-          <span className="flex items-center justify-center w-14 h-14 rounded-full bg-[#2D6A4F] text-white">
+          <span className="flex items-center justify-center w-14 h-14 rounded-full bg-forest-700 text-white">
             <Check className="w-7 h-7" aria-hidden="true" />
           </span>
           <div>
-            <p className="text-[1.35rem] leading-snug font-bold tracking-[-0.02em]">
+            <p className="t-h3 text-forest">
               {config.confirmation.title}
             </p>
-            <p className="mt-3 t-body text-gray-600 dark:text-[#A3B3A9]">
+            <p className="mt-3 t-body text-muted">
               {config.confirmation.text}
             </p>
           </div>
           <button
             type="button"
             onClick={() => setSent(false)}
-            className="group inline-flex items-center gap-2 text-[0.95rem] font-bold text-[#2D6A4F] dark:text-[#74c69d] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D6A4F] cursor-pointer"
+            className="group inline-flex items-center gap-2 text-[0.95rem] font-semibold text-forest-700 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 cursor-pointer"
           >
             Send another message
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -146,14 +146,14 @@ export default function EnquiryForm({ config }: { config: EnquiryFormConfig }) {
         </div>
       ) : (
         <form onSubmit={handleSubmit} noValidate>
-          <p className="text-[1.25rem] font-bold tracking-[-0.02em]">{config.heading}</p>
-          <p className="mt-1 text-[0.9rem] text-gray-500 dark:text-[#A3B3A9]">{config.replyNote}</p>
+          <p className="t-h3 text-forest">{config.heading}</p>
+          <p className="mt-1 text-[0.9rem] text-muted">{config.replyNote}</p>
 
-          <div className="mt-7 space-y-4">
+          <div className="mt-6 space-y-4">
             {failure && (
               <div
                 role="alert"
-                className="flex items-start gap-2.5 p-4 rounded-2xl bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 text-[0.9rem] font-medium"
+                className="flex items-start gap-2.5 p-4 rounded-lg bg-red-50 text-red-700 text-[0.9rem] font-medium"
               >
                 <CircleAlert className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" />
                 {failure}
@@ -217,8 +217,8 @@ export default function EnquiryForm({ config }: { config: EnquiryFormConfig }) {
             />
 
             {config.notice && (
-              <p className="flex gap-2.5 pt-1 text-[0.82rem] leading-relaxed text-gray-500 dark:text-[#A3B3A9]">
-                <Info className="w-4 h-4 mt-0.5 shrink-0 text-[#B7791F]" aria-hidden="true" />
+              <p className="flex gap-2.5 pt-1 text-[0.85rem] leading-relaxed text-muted">
+                <Info className="w-4 h-4 mt-0.5 shrink-0 text-gold-600" aria-hidden="true" />
                 {config.notice}
               </p>
             )}
@@ -226,7 +226,7 @@ export default function EnquiryForm({ config }: { config: EnquiryFormConfig }) {
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 inline-flex items-center justify-center gap-2 w-full h-14 bg-[#2D6A4F] text-white text-[1rem] font-bold rounded-2xl hover:bg-[#1e4d38] disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.99] transition-[background-color,scale,opacity] duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#2D6A4F]/40"
+              className="mt-2 inline-flex items-center justify-center gap-2 w-full min-h-12 py-3 bg-forest-700 text-white text-[1rem] font-semibold rounded-lg hover:bg-forest disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-forest-700/40"
             >
               {loading ? (
                 <>
